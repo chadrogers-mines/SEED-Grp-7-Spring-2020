@@ -302,21 +302,18 @@ errorRight ++;
   return;
 }
 
-
-//Serial.println(straightDriveLevel);
-//    analogWrite(MOTORPOWERLEFT, straightDriveLevel);
-//    analogWrite(MOTORPOWERRIGHT, straightDriveLevel);
-//    if((abs(leftEnc.read())-abs(startingCountsLeft)) < 1040){
-//      straightDriveLevel = constrain(((abs(leftEnc.read())/1040)*255), 110, 255);
-//    Serial.println(" first if ");
-//    }
-//    if(((positionCommandLeft)-3121) < abs(leftEnc.read())){
-//      straightDriveLevel = constrain((((abs(leftEnc.read())-(DESIREDFEET*4161))/3121)*255), 0, 255);
-//        Serial.println(" second if ");
-//    }
-//    errorLeft = (DESIREDFEET*COUNTSPERFOOT)-(leftEnc.read()-startingCountsLeft);
-//    errorRight = (DESIREDFEET*COUNTSPERFOOT)-(rightEnc.read()-startingCountsRight);
-//    Serial.print(errorLeft);
-//    Serial.print("  ");
-//    Serial.println(errorRight);
-//  } 
+void boxTurn (bool lOrR){
+  // Left is defined as 0, Right is defined as 1
+  if(lOrR == 0) {
+    turn(-90);
+    drive(1.1);
+    turn(-90);
+    drive(1.1);
+  }
+  else if(lOrR == 1){
+    turn(90);
+    drive(1.1);
+    turn(90);
+    drive(1.1);
+  }
+}
