@@ -62,7 +62,7 @@ float Ka = (0.0); // angular velocity proportional coefficient
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 void setup() {
   Serial.begin(115200);                  //Start serial debug
-  Wire.begin(0x01);                      //Join I2C interface as a aslave with address 0x01
+  Wire.begin(0x04);                      //Join I2C interface as a aslave with address 0x01
   pinMode(MOTORPOWERLEFT, OUTPUT);       //Declare outputs as outputs
   pinMode(MOTORPOWERRIGHT, OUTPUT);
   pinMode(MOTORDIRECTIONLEFT, OUTPUT);
