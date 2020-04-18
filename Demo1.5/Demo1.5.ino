@@ -61,21 +61,22 @@ float KpDrive = (0.1);
 float Ka = (0.0); // angular velocity proportional coefficient
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 void setup() {
-  Serial.begin(115200);               //Start serial debug
-  pinMode(MOTORPOWERLEFT, OUTPUT);  //Declare outputs as outputs
+  Serial.begin(115200);                  //Start serial debug
+  Wire.begin(0x01);                      //Join I2C interface as a aslave with address 0x01
+  pinMode(MOTORPOWERLEFT, OUTPUT);       //Declare outputs as outputs
   pinMode(MOTORPOWERRIGHT, OUTPUT);
   pinMode(MOTORDIRECTIONLEFT, OUTPUT);
   pinMode(MOTORDIRECTIONRIGHT, OUTPUT);
-  // pinMode(MOTORPOWERLEFT, OUTPUT); //duplicate
+  // pinMode(MOTORPOWERLEFT, OUTPUT);    //duplicate
   pinMode(MOTORGLOBALENABLE, OUTPUT);
-  pinMode(ENCL1, INPUT);            //Declare inputs as inputs
+  pinMode(ENCL1, INPUT);                 //Declare inputs as inputs
   pinMode(ENCL2, INPUT);
   pinMode(ENCR1, INPUT);
   pinMode(ENCR2, INPUT);
 
   digitalWrite(MOTORGLOBALENABLE, HIGH); //Must be high
   
-  delay(500);                      //Wait 2 seconds before beginning movement
+  delay(500);                            //Wait 2 seconds before beginning movement
   Serial.println("Exiting setup()///////////////////////////////////////////////////////////////////");
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
