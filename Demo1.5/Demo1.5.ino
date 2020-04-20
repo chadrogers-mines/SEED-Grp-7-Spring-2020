@@ -54,15 +54,38 @@ float outputRight = 0;
 long encRightPrev = 0;
 long encLeftPrev = 0;
 
-
 float Ki = (0.01);
 float Kp = (0.000001);
 float KpDrive = (0.1);
 float Ka = (0.0); // angular velocity proportional coefficient
+
+byte behaviorByte = 0;
+byte positionCommand = 0;
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+void receiveCommand(){
+  while(Wire.available() > 0){
+    behaviorByte = Wire.read();
+    positionCommand = Wire.read();
+    if(behaviorByte == 1){         //If behaviorByte is 1, we are requesting a turn
+      
+    }
+  }
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+void sendCommand(){
+  //prepare data into a byte to be sent to the pi
+  //Wire.write(dataByte);
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 void setup() {
   Serial.begin(115200);                  //Start serial debug
   Wire.begin(0x04);                      //Join I2C interface as a aslave with address 0x01
+  Wire.setClock(400000);                 //Set I2C interface to correct speed
+  Wire.onReceive(receiveCommand);
+  Wire.onRequest(sendCommand);
   pinMode(MOTORPOWERLEFT, OUTPUT);       //Declare outputs as outputs
   pinMode(MOTORPOWERRIGHT, OUTPUT);
   pinMode(MOTORDIRECTIONLEFT, OUTPUT);
